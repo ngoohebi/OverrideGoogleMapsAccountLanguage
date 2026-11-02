@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Maps Language</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" alt="" width="20" height="20">
+    <h1>Google Maps language</h1>
+  </header>
+
+  <p id="status" class="status" aria-live="polite"></p>
+
+  <input id="search" type="search" placeholder="Search language or type a code…" autocomplete="off" spellcheck="false" aria-label="Search languages">
+
+  <ul id="list" role="listbox" aria-label="Languages"></ul>
+
+  <p class="hint">Not listed? Type its code (e.g. <code>yue</code>) and pick it.</p>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

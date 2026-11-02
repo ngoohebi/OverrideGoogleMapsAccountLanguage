@@ -1,0 +1,91 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1f1f1f;
+  --muted: #5f6368;
+  --line: #e3e3e3;
+  --hover: #f1f3f4;
+  --accent: #1a73e8;
+  --accent-bg: #e8f0fe;
+  --input-bg: #f8f9fa;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #202124;
+    --fg: #e8eaed;
+    --muted: #9aa0a6;
+    --line: #3c4043;
+    --hover: #2d2f31;
+    --accent: #8ab4f8;
+    --accent-bg: #1f3a5f;
+    --input-bg: #292a2d;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  width: 320px;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+header { display: flex; align-items: center; gap: 8px; }
+h1 { font-size: 15px; font-weight: 600; margin: 0; }
+
+.status {
+  margin: 8px 0 10px;
+  color: var(--muted);
+  min-height: 1.4em;
+}
+.status strong { color: var(--fg); }
+
+input[type="search"], input[type="text"] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--fg);
+  font: inherit;
+  outline: none;
+}
+input:focus { border-color: var(--accent); }
+
+#list {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  max-height: 340px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+#list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+}
+#list li:last-child { border-bottom: 0; }
+#list li:hover, #list li.focus { background: var(--hover); }
+#list li[aria-selected="true"] { background: var(--accent-bg); }
+#list li[aria-selected="true"] .native::before { content: "✓ "; color: var(--accent); }
+
+.native { font-weight: 500; }
+.english { color: var(--muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.code { color: var(--muted); font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
+
+.off .native { font-weight: 600; }
+
+.custom-row .native { color: var(--accent); }
+
+.hint { margin: 0; color: var(--muted); font-size: 12px; }
+.hint code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
