@@ -6,9 +6,9 @@
     </linearGradient>
   </defs>
   <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
-  <!-- map pin -->
-  <path d="M64 18c-19.9 0-36 15.6-36 35 0 26 36 57 36 57s36-31 36-57c0-19.4-16.1-35-36-35z" fill="#fff"/>
-  <!-- "文A" glyph mark: two overlapping speech-like letters -->
-  <text x="64" y="66" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="700" fill="#1a73e8">A</text>
-  <text x="64" y="88" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#34a853" letter-spacing="1">hl=</text>
+  <!-- map pin = Google Maps -->
+  <path d="M64 14c-21 0-38 16.4-38 37 0 27.5 38 61 38 61s38-33.5 38-61c0-20.6-17-37-38-37z" fill="#fff"/>
+  <!-- 文A = language -->
+  <text x="51" y="58" text-anchor="middle" font-family="'PingFang TC', 'Hiragino Sans', 'Noto Sans CJK TC', sans-serif" font-size="32" font-weight="700" fill="#34a853">文</text>
+  <text x="79" y="76" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="700" fill="#1a73e8">A</text>
 </svg>

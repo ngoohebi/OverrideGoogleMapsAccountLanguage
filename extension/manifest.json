@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Maps Language Override",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Read Google Maps in the local language (or any language) instead of the language forced by your Google Account.",
   "icons": {
     "16": "icons/icon16.png",
