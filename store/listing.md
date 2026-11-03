@@ -36,11 +36,14 @@ Features
 How it works
 Google Maps accepts a language parameter in the address (hl=ja). The extension adds that parameter to Google Maps page loads with Chrome's declarativeNetRequest API. It never reads the content of pages.
 
+About the "Proceed with caution" notice
+If you use Chrome's Enhanced Safe Browsing, Chrome may show "This extension is not trusted by Enhanced Safe Browsing" before installing. That is Google's standard notice for extensions from developers who are new to the Chrome Web Store, not a sign that anything was found wrong, and it goes away on its own after a few months. The full source code is public on GitHub.
+
 Source code: https://github.com/ngoohebi/OverrideGoogleMapsAccountLanguage
 
 ## Images
 - Icon: extension/icons/icon128.png
-- Screenshots (1280×800): store/images/screenshot-1.png, store/images/screenshot-2.png
+- Screenshots (1280×800), in this order: store/images/screenshot-1.png (before/after), store/images/screenshot-2.png (language menu), store/images/screenshot-3.png (Maps + popup)
 - Small promo tile (440×280): store/images/promo-small.png
 
 ## Privacy tab

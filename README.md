@@ -14,7 +14,16 @@ When you are signed in, Google Maps always uses your Google Account language. Ab
 
 You don't want to change your whole Google Account language for one trip. This extension adds `hl=<language>` to every Google Maps page load, which Google Maps honors over the account setting. Pick a language once and leave it on for the trip, then switch it **Off** when you're home.
 
+## Install
+
+Get it from the [Chrome Web Store](https://chromewebstore.google.com/detail/gmagdmlgaohbookancbaiegljbleemif).
+
+If you use Chrome's Enhanced Safe Browsing, Chrome may say **"Proceed with caution: This extension is not trusted by Enhanced Safe Browsing."** That is Google's standard notice for extensions from developers who are new to the store, not a sign that anything was found wrong; it goes away on its own after a few months. The full source code is in this repository. Click **Continue to install** to go ahead.
+
 ## Use
+
+![The language menu: the full list, and a search for "ch"](store/images/screenshot-2.png)
+
 
 1. Click the toolbar icon.
 2. Search for and click a language (all 74 languages the Google Maps website supports, shown by native name). For a language that isn't listed, type its code (e.g. `yue`) and click the **Use code "yue"** row.

@@ -1,6 +1,7 @@
 // Renders Chrome Web Store images into store/images/:
 //   screenshot-1.png  1280x800  before/after: English vs local Japanese
-//   screenshot-2.png  1280x800  Maps in Japanese + the popup
+//   screenshot-2.png  1280x800  the language menu: full list + search
+//   screenshot-3.png  1280x800  Maps in Japanese + the popup
 //   promo-small.png   440x280   small promo tile
 // Run: npm run assets   (needs network; drives real Google Maps)
 import puppeteer from 'puppeteer';
@@ -58,15 +59,19 @@ try {
     return buf;
   }
 
-  async function popupShot(lang) {
+  async function popupShot(lang, query = '') {
     await setLang(lang);
     const page = await browser.newPage();
     await page.setViewport({ width: 320, height: 520, deviceScaleFactor: 2 });
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
     await page.goto(`chrome-extension://${extId}/popup.html`);
     await page.waitForSelector('#list li[aria-selected="true"]');
+    if (query) await page.type('#search', query);
+    else await page.evaluate(() => document.activeElement?.blur());
     await sleep(300);
-    const buf = await page.screenshot();
+    // Crop to the popup's real height, as Chrome shows it.
+    const height = await page.evaluate(() => Math.ceil(document.body.getBoundingClientRect().height));
+    const buf = await page.screenshot({ clip: { x: 0, y: 0, width: 320, height } });
     await page.close();
     return buf;
   }
@@ -75,6 +80,7 @@ try {
   const ja = await mapsShot('ja', 640, 690, 150);
   const jaFull = await mapsShot('ja', 1280, 800);
   const popup = await popupShot('ja');
+  const popupSearch = await popupShot('ja', 'ch');
   await setLang('');
 
   const font = `system-ui,-apple-system,"Segoe UI",Roboto,sans-serif`;
@@ -102,9 +108,39 @@ try {
     <h1>See the names and addresses the way they are written on the street</h1>
     <div class="row">
       <figure class="before"><figcaption>Account language (English)</figcaption><img src="${b64(en)}"></figure>
-      <figure class="after"><figcaption>Local language: 日本語 (hl=ja)</figcaption><img src="${b64(ja)}"></figure>
+      <figure class="after"><figcaption>Local language: 日本語</figcaption><img src="${b64(ja)}"></figure>
     </div>`,
     1280, 800, 'screenshot-1.png',
+  );
+
+  await compose(
+    `<style>
+      body{margin:0;width:1280px;height:800px;overflow:hidden;font-family:${font};background:#e8f0fe;color:#202124;
+        display:flex;align-items:center;gap:40px;padding:0 56px;box-sizing:border-box}
+      .text{flex:1}
+      h1{margin:0 0 22px;font-size:38px;line-height:1.15;color:#174ea6}
+      ul{margin:0;padding:0;list-style:none;font-size:21px;line-height:1.45}
+      li{margin:0 0 14px;padding-left:34px;position:relative}
+      li::before{content:"✓";position:absolute;left:0;color:#1a73e8;font-weight:700}
+      .pops{display:flex;gap:24px;align-items:flex-start}
+      .pop{width:340px;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);overflow:hidden;background:#fff}
+      .pop img{display:block;width:340px}
+      .cap{margin:0 0 10px;font-size:16px;font-weight:600;color:#5f6368;text-align:center}
+    </style>
+    <div class="text">
+      <h1>Pick a language once.<br>Every Google Maps page follows.</h1>
+      <ul>
+        <li>All 74 Google Maps languages, each in its own script</li>
+        <li>Search by name or language code</li>
+        <li>Not listed? Type any code and pick it</li>
+        <li>“Off” goes back to your account language</li>
+      </ul>
+    </div>
+    <div class="pops">
+      <div><p class="cap">Click the toolbar icon</p><div class="pop"><img src="${b64(popup)}"></div></div>
+      <div><p class="cap">Search “ch”</p><div class="pop"><img src="${b64(popupSearch)}"></div></div>
+    </div>`,
+    1280, 800, 'screenshot-2.png',
   );
 
   await compose(
@@ -116,7 +152,7 @@ try {
     </style>
     <img class="map" src="${b64(jaFull)}">
     <div class="pop"><img src="${b64(popup)}"></div>`,
-    1280, 800, 'screenshot-2.png',
+    1280, 800, 'screenshot-3.png',
   );
 
   await compose(
