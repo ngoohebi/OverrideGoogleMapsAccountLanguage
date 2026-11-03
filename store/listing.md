@@ -1,15 +1,20 @@
 # Chrome Web Store listing — Maps Language Override
 
-Copy these into the Developer Dashboard (Store listing / Privacy tabs).
+What is entered in the Developer Dashboard (Store listing / Privacy tabs).
+Listing text and images are changed in the dashboard by hand; the GitHub
+release workflow only uploads new versions of the extension.
+
+Item: https://chromewebstore.google.com/detail/gmagdmlgaohbookancbaiegljbleemif
 
 ## Name
 Maps Language Override
 
 ## Summary (max 132 chars)
-Read Google Maps in the local language — real place names and local addresses — instead of the language forced by your Google Account.
+Taken from "description" in extension/manifest.json; it can only change with a new version:
+Read Google Maps in the local language (or any language) instead of the language forced by your Google Account.
 
 ## Category
-Tools  (alternative: Travel)
+Travel
 
 ## Language
 English
@@ -40,6 +45,10 @@ About the "Proceed with caution" notice
 If you use Chrome's Enhanced Safe Browsing, Chrome may show "This extension is not trusted by Enhanced Safe Browsing" before installing. That is Google's standard notice for extensions from developers who are new to the Chrome Web Store, not a sign that anything was found wrong, and it goes away on its own after a few months. The full source code is public on GitHub.
 
 Source code: https://github.com/ngoohebi/OverrideGoogleMapsAccountLanguage
+
+## Additional fields
+- Homepage URL: https://github.com/ngoohebi/OverrideGoogleMapsAccountLanguage
+- Support URL: https://github.com/ngoohebi/OverrideGoogleMapsAccountLanguage/issues
 
 ## Images
 - Icon: extension/icons/icon128.png
